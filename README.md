@@ -70,3 +70,5 @@ EXPOSE 8080
 # Command to run the application
 CMD ["java", "-jar", "target/spring-backend-v1.jar"]
 ```
+
+
