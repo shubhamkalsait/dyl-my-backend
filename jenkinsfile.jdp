@@ -10,15 +10,13 @@ pipeline {
             steps{
               sh '''docker build . -t shubhamkalsait1/dyl-my-backend:latest
                     echo "Redhat@123" | docker login --username shubhamkalsait1 --password-stdin
-                    docker push shubhamkalsait1/dyl-my-backend:latest'''
+                    docker push shubhamkalsait1/dyl-my-backend:latest
+                    docker rmi shubhamkalsait1/dyl-my-backend:latest'''
             }
         }
         stage('DEPLOY') {
             steps {
-                sh '''mkdir ~/.kube
-                    cp .kubeconfig ~/.kube/config
-                    chmod -R 777 ~/.kube
-                    kubectl config current-context
+                sh '''kubectl config current-context
                     kubectl apply -f ./yaml/'''
             }
         }
